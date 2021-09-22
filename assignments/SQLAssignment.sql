@@ -170,7 +170,7 @@ SELECT name
 FROM customers
 WHERE name LIKE '%Smith%';
 
-# Get the total balance of all accounts held by the Smiths.
+-- # Get the total balance of all accounts held by the Smiths.
 
 SELECT SUM(a.balance) AS "Smith Total"
 FROM accounts a
@@ -178,7 +178,7 @@ JOIN accounts_customers ac ON a.account_id = ac.account_id
 JOIN customers c ON ac.customer_id = c.customer_id
 WHERE c.name LIKE '%Smith%';
 
-# Get the name and address of any customer with less than $50 in an account. (No duplicates!)
+-- # Get the name and address of any customer with less than $50 in an account. (No duplicates!)
 
 SELECT DISTINCT c.name, CONCAT(ad.address, " ", ad.city, ", ", ad.state) as "Home Address"
 FROM customers c 
@@ -186,15 +186,15 @@ JOIN accounts_customers ac ON c.customer_id = ac.customer_id
 JOIN accounts a ON ac.account_id = a.account_id
 JOIN address ad ON ad.address_id = c.address_id
 WHERE balance < 50;
-
-# Get a list of all the customers who live in Texas.
-
+ 
+-- # Get a list of all the customers who live in Texas.
+ 
 SELECT *
 FROM customers c 
 JOIN address ad ON c.address_id = ad.address_id
 WHERE ad.state = 'TX';
 
-# Add $100 gift to any accounts belonging to customers in New York
+-- # Add $100 gift to any accounts belonging to customers in New York
 
 UPDATE accounts a
 JOIN accounts_customers ac ON a.account_id = ac.account_id
@@ -203,22 +203,21 @@ JOIN address ad ON ad.address_id = c.address_id
 SET balance = (balance + 100)
 WHERE state = 'NY';
 
-# Transfer $199.99 from Jason Smith to Amanda Smith
+-- # Transfer $199.99 from Jason Smith to Amanda Smith
 
 UPDATE accounts a
 JOIN accounts_customers ac ON a.account_id = ac.account_id
 JOIN customers c ON c.customer_id = ac.customer_id
 SET balance = (balance - 199.99)
-WHERE name = 'Jason Smith';
-
+WHERE a.account_id = '900001';
+ 
 UPDATE accounts a
 JOIN accounts_customers ac ON a.account_id = ac.account_id
 JOIN customers c ON c.customer_id = ac.customer_id
 SET balance = (balance + 199.99)
-WHERE name = 'Amanda Smith';
+WHERE a.account_id = '900003';
 
-
-# Change Amanda Smith's last name to "Lastname"
+-- # Change Amanda Smith's last name to "Lastname"
 UPDATE customers name
 SET name = 'Amanda Lastname'
 WHERE name = 'Amanda Smith';
