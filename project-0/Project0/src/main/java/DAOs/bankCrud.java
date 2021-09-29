@@ -17,7 +17,7 @@ public interface bankCrud<T> {
     public int getAccountId() throws SQLException;
 
         //get accounts by username
-    public MyArrayList<Account> getAccountsByUser(String username) throws SQLException;
+    public MyArrayList<T> getAccountsByUser(String username) throws SQLException;
 
     //create bank account
     public void newBankAccount(String account_type, String username) throws SQLException, InvalidAccountTypeException;

@@ -21,5 +21,5 @@ public interface userCrud<T> {
     public void newAccount(User newUser) throws SQLException, UserAlreadyExistsException;
 
         //read user info from database to login
-    public User verifyLogin(String username, String password) throws SQLException, IncorrectPasswordException, AccountDoesNotExistException;
+    public T verifyLogin(String username, String password) throws SQLException, IncorrectPasswordException, AccountDoesNotExistException;
 }
