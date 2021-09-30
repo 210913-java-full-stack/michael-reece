@@ -86,6 +86,11 @@ public class DepositFunds {
                 //if the account belongs to the user then ask how much they'd like to deposit
                 System.out.println("Enter the amount to deposit: ");
                 deposit_amount = Double.parseDouble(sc.nextLine());
+                if(deposit_amount < 1)
+                {
+                    System.out.println("Deposit can't be less than $1. Please try again.");
+                    depositWithList(username);
+                }
             }
             else
             {

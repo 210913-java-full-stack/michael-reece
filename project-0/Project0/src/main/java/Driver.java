@@ -6,6 +6,7 @@ public class Driver {
     public static void main(String[] args){
         //scanner object bound to system.in listening for input from the user
         Scanner sc = new Scanner(System.in);
+        //We want to hold the current username that's logged in once that happens.
         String currentUser = "";
 
         boolean running = true;
