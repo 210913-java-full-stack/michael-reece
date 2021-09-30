@@ -17,10 +17,12 @@ public class NewBankAccount {
 
     public static boolean newBankAccount(String username)
     {
+        //Print out the menu and collect information from the user
         System.out.println("======NEW ACCOUNT======\nEnter account type (Savings or Checking):");
         account_type = sc.nextLine();
 
         try{
+            //send information to make a new account. Each account is given a # automatically and a bal of 0
             Connection conn = ConnectionManager.getConnection();
             BankDAO bankDAO = new BankDAO(conn);
             bankDAO.newBankAccount(account_type, username);

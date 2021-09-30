@@ -20,12 +20,14 @@ public class Register{
         //Asks for username and password
         System.out.println("======REGISTER======\nEnter your first name:");
         first_name = sc.nextLine();
+        //validation that the first name only contains letters and no foreign characters
         if(!isValidString(first_name))
         {
             return false;
         }
         System.out.println("Enter your last name:");
         last_name = sc.nextLine();
+        //validation for the last name as well
         if(!isValidString(last_name))
         {
             return false;

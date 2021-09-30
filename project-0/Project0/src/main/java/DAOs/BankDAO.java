@@ -61,11 +61,13 @@ public class BankDAO implements bankCrud {
     }
     @Override
     public void newBankAccount(String account_type, String username) throws SQLException, InvalidAccountTypeException {
+        //creating new bank account. get most recently used ID
         getAccountId();
 
         String insertStatement = "INSERT INTO user_accounts (username, account_id) VALUES (?,?)";
         PreparedStatement preparedInsertStmt = conn.prepareStatement(insertStatement);
         preparedInsertStmt.setString(1,username);
+        //taking the most recently used account number and increasing it by one gives the newest unused number
         newestAccountId++;
         preparedInsertStmt.setInt(2,newestAccountId);
         preparedInsertStmt.executeUpdate();
@@ -120,7 +122,7 @@ public class BankDAO implements bankCrud {
             System.out.println("Not enough funds. Withdraw unsuccessful.");
             return false;
         }
-
+        //if we have enough funds then update the amount minus however much we withdrew
         String withdrawSQL = "UPDATE accounts SET balance = (balance - ?) WHERE account_id = ?";
         PreparedStatement withdrawStmt = conn.prepareStatement(withdrawSQL);
         withdrawStmt.setDouble(1,withdraw_amount);
@@ -131,19 +133,23 @@ public class BankDAO implements bankCrud {
 
     @Override
     public boolean validFundsForWithdraw(int account_id, double withdraw_amount) throws SQLException {
+        //getting balance from the account we're trying to withdraw from
         String validateSQL = "SELECT balance FROM accounts WHERE account_id = ?";
         PreparedStatement validateStmt = conn.prepareStatement(validateSQL);
         validateStmt.setInt(1,account_id);
         ResultSet rs = validateStmt.executeQuery();
         while(rs.next())
         {
+            //get current balance
             double currentBalance = rs.getDouble("balance");
             if(currentBalance >= withdraw_amount)
             {
+                //if it's above or equal to the withdraw amount then we can perform the withdraw
                 return true;
             }
             else
             {
+                //if it isn't then we can't perform the withdraw
                 return false;
             }
         }

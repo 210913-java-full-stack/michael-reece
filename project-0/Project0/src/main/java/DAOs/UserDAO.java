@@ -25,7 +25,7 @@ public class UserDAO implements userCrud {
 
     @Override
     public int getAccountId() throws SQLException {
-        //We are grabbing the newest account ID that was used by the auto increment in the table.
+        //We are grabbing the newest account ID that was used in the table.
         String sql = "SELECT * FROM user_accounts";
         PreparedStatement findAccNumStmt = conn.prepareStatement(sql);
         ResultSet rs = findAccNumStmt.executeQuery();

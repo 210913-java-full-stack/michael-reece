@@ -46,18 +46,3 @@ INSERT INTO accounts (account_id, account_type, balance) VALUES (900000, "Saving
 INSERT INTO user_accounts (username, account_id) VALUES ("micool", 900001);
 INSERT INTO user_info (username, password, first_name, last_name) VALUES ("micool", "badPassword", "Michael","Reece");
 INSERT INTO accounts (account_id, account_type, balance) VALUES (900001, "Checking", 0);
-
-SELECT *
-FROM accounts a
-JOIN user_accounts ua ON a.account_id = ua.account_id
-WHERE username = "mtall";
-
--- SELECT *
--- FROM user_accounts
--- WHERE (username = "mtall") AND (account_id = 900004);
-
-UPDATE accounts
-SET balance = (balance + 100)
-WHERE account_id = 900002
-
-SELECT * FROM accounts WHERE account_id = 900002;

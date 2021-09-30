@@ -56,6 +56,7 @@ public class DepositFunds {
     {
         System.out.println("======ACCOUNT LIST======");
         try{
+            //we're getting the account list to print out
             Connection conn = ConnectionManager.getConnection();
             BankDAO dao = new BankDAO(conn);
             MyArrayList<Account> accountList = new MyArrayList<>();
@@ -82,16 +83,21 @@ public class DepositFunds {
 
             if(dao.accountBelongsById(account_number,username))
             {
+                //if the account belongs to the user then ask how much they'd like to deposit
                 System.out.println("Enter the amount to deposit: ");
                 deposit_amount = Double.parseDouble(sc.nextLine());
             }
             else
             {
-                deposit(username);
+                //if accountBelongsById fails it means the user entered an account # that isn't theirs
+                //I send them back up to the top of the deposit function to try again.
+                depositWithList(username);
             }
 
             if(dao.depositFunds(account_number,deposit_amount))
             {
+                //By this point we've checked the account number and gotten the amount.
+                //We get into here by successfully depositing money into an account
                 System.out.println(deposit_amount + " deposited into account number " + account_number);
                 AccountList.AccountList(username);
             }

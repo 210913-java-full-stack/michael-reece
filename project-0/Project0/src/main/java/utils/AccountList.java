@@ -18,6 +18,7 @@ public class AccountList {
         System.out.println("======ACCOUNT LIST======\n");
 
         try{
+            //We are getting the accounts in an arraylist in order to print out for the user.
             Connection conn = ConnectionManager.getConnection();
             BankDAO dao = new BankDAO(conn);
             MyArrayList<Account> accountList = new MyArrayList<>();
@@ -25,6 +26,7 @@ public class AccountList {
 
             for(int i = 0; i<accountList.size();i++)
             {
+                //call printmylist to format it.
                 PrintList.printMyList(accountList.get(i));
             }
 
@@ -33,7 +35,7 @@ public class AccountList {
         }
 
         System.out.println("========================");
-
+        //after showing them their accounts, printout asking them if they want to deposit or withdraw from their accounts
         System.out.println("What would you like to do?\n1) Deposit Funds\n2) Withdraw funds\nQ) Quit");
         String input = sc.nextLine();
         switch(input)
