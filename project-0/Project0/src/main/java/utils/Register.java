@@ -17,7 +17,7 @@ public class Register{
     static Scanner sc = new Scanner(System.in);
     public static boolean RegisterUser(){
         boolean notFinished = true;
-        //Asks for username and password
+        //Asks for first name, last name, username, and password
         System.out.println("======REGISTER======\nEnter your first name:");
         first_name = sc.nextLine();
         //validation that the first name only contains letters and no foreign characters

@@ -20,8 +20,7 @@ public class Driver {
                     //Register the user.
                     if(Register.RegisterUser())
                     {
-                        //System.out.println("Account created successfully! Please log in.");
-                        continue;
+
                     }
                     else
                     {
