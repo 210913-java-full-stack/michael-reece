@@ -17,7 +17,7 @@
 
 - [ ] View the transaction history for an account.<br>
 - [ ] Share an account with another user.<br>
-- [ ] Transfer funds between accounts.<br>
+- [x] Transfer funds between accounts.<br>
 
 <h1>Tech Stack:</h1>
 <b>You should be employing the following technologies in your project:<b><br>
