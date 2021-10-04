@@ -1,10 +1,8 @@
 package DAOs;
 
-import datastructures.MyArrayList;
 import exceptions.AccountDoesNotExistException;
 import exceptions.IncorrectPasswordException;
 import exceptions.UserAlreadyExistsException;
-import models.Account;
 import models.User;
 
 import java.sql.Connection;
@@ -12,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDAO implements userCrud {
+public class UserDAO implements userCrud<User> {
 
     private Connection conn;
     public int newestAccountId;

@@ -33,4 +33,7 @@ public interface bankCrud<T> {
 
     //do we have enough funds?
     public boolean validFundsForWithdraw(int account_id, double withdraw_amount) throws SQLException;
+
+    //transfer funds between two of a user's accounts
+    public boolean fundsBetweenAccounts(int account1, int account2, double amount) throws SQLException;
 }

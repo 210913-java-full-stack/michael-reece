@@ -1,10 +1,7 @@
 package utils;
 
 import DAOs.BankDAO;
-import DAOs.UserDAO;
 import datastructures.MyArrayList;
-import exceptions.AccountDoesNotExistException;
-import exceptions.IncorrectPasswordException;
 import models.Account;
 
 import java.io.IOException;
@@ -17,7 +14,7 @@ public class DepositFunds {
     static double deposit_amount;
     static int account_number;
 
-    public static boolean deposit(String username)
+    public static void deposit(String username)
     {
         Scanner sc = new Scanner(System.in);
         //get relevant information from the user
@@ -42,35 +39,17 @@ public class DepositFunds {
             if(dao.depositFunds(account_number,deposit_amount))
             {
                 System.out.println(deposit_amount + " deposited into account number " + account_number);
-                AccountList.AccountList(username);
+                AccountListMenu.viewMenu(username);
             }
 
         } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());
-            return false;
         }
-        return true;
     }
 
-    public static boolean depositWithList(String username)
+    public static void depositWithList(String username)
     {
-        System.out.println("======ACCOUNT LIST======");
-        try{
-            //we're getting the account list to print out
-            Connection conn = ConnectionManager.getConnection();
-            BankDAO dao = new BankDAO(conn);
-            MyArrayList<Account> accountList = new MyArrayList<>();
-            accountList = dao.getAccountsByUser(username);
-
-            for(int i = 0; i<accountList.size();i++)
-            {
-                PrintList.printMyList(accountList.get(i));
-            }
-
-        } catch (SQLException | IOException e) {
-            System.out.println(e.getMessage());
-        }
-
+        PrintAccountList.printAccountList(username);
         Scanner sc = new Scanner(System.in);
         //get relevant information from the user
         System.out.println("======DEPOSIT FUNDS======");
@@ -104,14 +83,12 @@ public class DepositFunds {
                 //By this point we've checked the account number and gotten the amount.
                 //We get into here by successfully depositing money into an account
                 System.out.println(deposit_amount + " deposited into account number " + account_number);
-                AccountList.AccountList(username);
+                AccountListMenu.viewMenu(username);
             }
 
         } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());
-            return false;
         }
-        return true;
     }
 
 }

@@ -5,19 +5,6 @@ public class Account {
     private String account_type;
     private double balance;
 
-    public Account(String account_type) {
-        this.account_id = account_id;
-        this.account_type = account_type;
-        this.balance = 0;
-    }
-
-    public Account(int account_id, String account_type)
-    {
-        this.account_id = account_id;
-        this.account_type = account_type;
-        this.balance = 0;
-    }
-
     public Account(int account_id, String account_type, double balance)
     {
         this.account_id = account_id;

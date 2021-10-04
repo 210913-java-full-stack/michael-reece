@@ -28,13 +28,13 @@ public class Login {
 
             if(dao.verifyLogin(user,password) != null)
             {
-                //if it returns a User, it succeeded and now we can return the username so we know who is logged in.
+                //if it returns a User, it succeeded, and now we can return the username so we know who is logged in.
                 return user;
             }
 
         } catch (SQLException | IOException | IncorrectPasswordException | AccountDoesNotExistException e) {
             System.out.println(e.getMessage());
-            return null;
+            MainMenu.viewMenu();
         }
         return null;
     }
