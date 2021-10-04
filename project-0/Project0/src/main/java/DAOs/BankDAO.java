@@ -14,7 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BankDAO implements bankCrud {
+public class BankDAO implements bankCrud<Account> {
 
 
     private Connection conn;
@@ -59,6 +59,7 @@ public class BankDAO implements bankCrud {
 
         return accountList;
     }
+
     @Override
     public void newBankAccount(String account_type, String username) throws SQLException, InvalidAccountTypeException {
         //creating new bank account. get most recently used ID
@@ -86,7 +87,6 @@ public class BankDAO implements bankCrud {
         //Now deposit whatever amount into that account
         String depositSql = "UPDATE accounts SET balance = (balance + ?) WHERE account_id = ?";
         PreparedStatement depositStmt = conn.prepareStatement(depositSql);
-        System.out.println(deposit_amount);
         depositStmt.setDouble(1,deposit_amount);
         depositStmt.setInt(2,account_id);
         depositStmt.executeUpdate();
@@ -155,6 +155,33 @@ public class BankDAO implements bankCrud {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean fundsBetweenAccounts(int account1, int account2, double amount) throws SQLException {
+        //account1 is the account we're taking money from
+        //account2 is the account we're putting money into
+        //have to check if account1 has enough funds to withdraw from
+        if(!validFundsForWithdraw(account1,amount))
+        {
+            System.out.println("Not enough funds. Transfer unsuccessful.");
+            return false;
+        }
+        //account1 has enough funds. Take the amount out of account1 first
+        String withdrawSQL = "UPDATE accounts SET balance = (balance - ?) WHERE account_id = ?";
+        PreparedStatement withdrawStmt = conn.prepareStatement(withdrawSQL);
+        withdrawStmt.setDouble(1,amount);
+        withdrawStmt.setInt(2,account1);
+        withdrawStmt.executeUpdate();
+
+        //now add that amount to account2
+        String depositSQL = "UPDATE accounts SET balance = (balance + ?) WHERE account_id = ?";
+        PreparedStatement depositStmt = conn.prepareStatement(depositSQL);
+        depositStmt.setDouble(1,amount);
+        depositStmt.setInt(2, account2);
+        depositStmt.executeUpdate();
+
+        return true;
     }
 
 

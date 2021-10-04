@@ -11,7 +11,8 @@ public class LoggedInMenu {
         Boolean running = true;
         while(running)
         {
-            System.out.println("======LOGGED IN======\nEnter Selection:\n1)Create new bank account.\n2)Deposit funds.\n3)Withdraw funds.\n4)Look at all accounts\nQ)Quit");
+            System.out.println("======LOGGED IN======\nEnter Selection:\n1)Create new bank account.\n2)Deposit funds." +
+                    "\n3)Withdraw funds.\n4)Transfer funds between accounts\n5)Look at all accounts\nQ)Quit");
             String input = sc.nextLine();
             switch(input)
             {
@@ -35,8 +36,11 @@ public class LoggedInMenu {
                     WithdrawFunds.withdrawWithList(currentUser);
                     break;
                 case "4":
+                    //Transfer funds between accounts
+                    TransferBetweenAccounts.transferFunds(currentUser);
+                case "5":
                     //Look at all accounts
-                    AccountList.AccountList(currentUser);
+                    AccountListMenu.viewMenu(currentUser);
                     running = false;
                 case "Q":
                 case "q":

@@ -39,7 +39,7 @@ public class WithdrawFunds {
             if(dao.withdrawFunds(account_number,withdraw_amount))
             {
                 System.out.println(withdraw_amount + " withdrawn from account number " + account_number);
-                AccountList.AccountList(username);
+                AccountListMenu.viewMenu(username);
             }
 
         } catch (SQLException | IOException e) {
@@ -49,24 +49,10 @@ public class WithdrawFunds {
         return true;
     }
 
-    public static boolean withdrawWithList(String username)
+    public static void withdrawWithList(String username)
     {
-        //print the account list
-        System.out.println("======ACCOUNT LIST======");
-        try{
-            Connection conn = ConnectionManager.getConnection();
-            BankDAO dao = new BankDAO(conn);
-            MyArrayList<Account> accountList = new MyArrayList<>();
-            accountList = dao.getAccountsByUser(username);
-
-            for(int i = 0; i<accountList.size();i++)
-            {
-                PrintList.printMyList(accountList.get(i));
-            }
-
-        } catch (SQLException | IOException e) {
-            System.out.println(e.getMessage());
-        }
+        //print account list
+        PrintAccountList.printAccountList(username);
 
         Scanner sc = new Scanner(System.in);
         //get relevant information from the user
@@ -97,13 +83,11 @@ public class WithdrawFunds {
                 //successfully withdrawn, let the user know via a printout
                 System.out.println(withdraw_amount + " withdrawn from account number " + account_number);
                 //then list accounts in case we want to do more
-                AccountList.AccountList(username);
+                AccountListMenu.viewMenu(username);
             }
 
         } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());
-            return false;
         }
-        return true;
     }
 }
