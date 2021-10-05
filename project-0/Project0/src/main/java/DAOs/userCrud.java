@@ -1,11 +1,8 @@
 package DAOs;
 
-import datastructures.MyArrayList;
 import exceptions.AccountDoesNotExistException;
 import exceptions.IncorrectPasswordException;
-import exceptions.InvalidAccountTypeException;
 import exceptions.UserAlreadyExistsException;
-import models.Account;
 import models.User;
 
 import java.sql.SQLException;

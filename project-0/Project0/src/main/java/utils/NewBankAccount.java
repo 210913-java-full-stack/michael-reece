@@ -1,8 +1,6 @@
 package utils;
 
 import DAOs.BankDAO;
-import DAOs.UserDAO;
-import exceptions.InvalidAccountTypeException;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -22,15 +20,24 @@ public class NewBankAccount {
         account_type = sc.nextLine();
 
         try{
-            //send information to make a new account. Each account is given a # automatically and a bal of 0
-            Connection conn = ConnectionManager.getConnection();
-            BankDAO bankDAO = new BankDAO(conn);
-            bankDAO.newBankAccount(account_type, username);
-            return true;
+            if(account_type.equals("Savings") || account_type.equals("Checking"))
+            {
+                //send information to make a new account. Each account is given a # automatically and a bal of 0
+                Connection conn = ConnectionManager.getConnection();
+                BankDAO bankDAO = new BankDAO(conn);
+                bankDAO.newBankAccount(account_type, username);
+                return true;
+            }
+            else
+            {
+                System.out.println("Must be a Checking or Savings account type.");
+                LoggedInMenu.viewLoggedInMenu(username);
+            }
 
-        } catch (SQLException | IOException | InvalidAccountTypeException e) {
+        } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());
             return false;
         }
+        return false;
     }
 }

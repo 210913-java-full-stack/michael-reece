@@ -11,8 +11,8 @@ public class LoggedInMenu {
         Boolean running = true;
         while(running)
         {
-            System.out.println("======LOGGED IN======\nEnter Selection:\n1)Create new bank account.\n2)Deposit funds." +
-                    "\n3)Withdraw funds.\n4)Transfer funds between accounts\n5)Look at all accounts\nQ)Quit");
+            System.out.println("======LOGGED IN======\nEnter Selection:\n1) Create new bank account.\n2) Deposit funds." +
+                    "\n3) Withdraw funds.\n4) Transfer funds between accounts\n5) Look at all accounts\n6) Log out");
             String input = sc.nextLine();
             switch(input)
             {
@@ -42,9 +42,8 @@ public class LoggedInMenu {
                     //Look at all accounts
                     AccountListMenu.viewMenu(currentUser);
                     running = false;
-                case "Q":
-                case "q":
-                    System.exit(0);
+                case "6":
+                    MainMenu.viewMenu();
                 default:
                     System.out.println("Invalid input! Please type one of the numbers from the list.");
             }

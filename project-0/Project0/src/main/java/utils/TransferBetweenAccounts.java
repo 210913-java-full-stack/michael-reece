@@ -57,6 +57,10 @@ public class TransferBetweenAccounts {
                 System.out.println(transfer_amount + " deposited into account number " + account2 + " from account number " + account1);
                 LoggedInMenu.viewLoggedInMenu(username);
             }
+            else
+            {
+                transferFunds(username);
+            }
 
         } catch (SQLException | IOException e) {
             System.out.println(e.getMessage());

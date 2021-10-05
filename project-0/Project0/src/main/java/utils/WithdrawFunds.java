@@ -14,41 +14,6 @@ public class WithdrawFunds {
     static double withdraw_amount;
     static int account_number;
 
-    public static boolean withdraw(String username)
-    {
-        Scanner sc = new Scanner(System.in);
-        //get relevant information from the user
-        System.out.println("======WITHDRAW FUNDS======");
-        System.out.println("Enter the account number you want to withdraw from: ");
-        account_number = Integer.parseInt(sc.nextLine());
-        try{
-            Connection conn = ConnectionManager.getConnection();
-            //create dao instance to perform deposit
-            BankDAO dao = new BankDAO(conn);
-
-            if(dao.accountBelongsById(account_number,username))
-            {
-                System.out.println("Enter the amount to withdraw: ");
-                withdraw_amount = Double.parseDouble(sc.nextLine());
-            }
-            else
-            {
-                withdraw(username);
-            }
-
-            if(dao.withdrawFunds(account_number,withdraw_amount))
-            {
-                System.out.println(withdraw_amount + " withdrawn from account number " + account_number);
-                AccountListMenu.viewMenu(username);
-            }
-
-        } catch (SQLException | IOException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-        return true;
-    }
-
     public static void withdrawWithList(String username)
     {
         //print account list
@@ -84,6 +49,10 @@ public class WithdrawFunds {
                 System.out.println(withdraw_amount + " withdrawn from account number " + account_number);
                 //then list accounts in case we want to do more
                 AccountListMenu.viewMenu(username);
+            }
+            else
+            {
+                withdrawWithList(username);
             }
 
         } catch (SQLException | IOException e) {

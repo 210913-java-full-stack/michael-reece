@@ -23,14 +23,14 @@ public class AccountListMenu {
         switch(input)
         {
             case "1":
-                DepositFunds.deposit(username);
+                DepositFunds.depositWithList(username);
                 break;
             case "2":
-                WithdrawFunds.withdraw(username);
+                WithdrawFunds.withdrawWithList(username);
                 break;
             case "Q":
             case "q":
-                break;
+                LoggedInMenu.viewLoggedInMenu(username);
         }
     }
 }

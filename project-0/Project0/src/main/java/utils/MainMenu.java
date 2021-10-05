@@ -14,7 +14,7 @@ public class MainMenu {
         boolean running = true;
         while(running)
         {
-            System.out.println("======MAIN MENU======\nEnter Selection:\n\n1)Register for an account.\n2)Log in to your account.");
+            System.out.println("======MAIN MENU======\nEnter Selection:\n\n1) Register for an account.\n2) Log in to your account.\nQ) Quit");
             String input = sc.nextLine();
             switch(input)
             {
@@ -42,6 +42,9 @@ public class MainMenu {
                         System.out.println("Log in failed.");
                         Login.LoginUser();
                     }
+                case "Q":
+                case "q":
+                    System.exit(0);
                 default:
                     System.out.println("Invalid input! Please type one of the numbers from the list.");
                     continue;

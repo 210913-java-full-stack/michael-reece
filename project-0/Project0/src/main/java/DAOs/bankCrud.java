@@ -1,12 +1,6 @@
 package DAOs;
 
 import datastructures.MyArrayList;
-import exceptions.AccountDoesNotExistException;
-import exceptions.IncorrectPasswordException;
-import exceptions.InvalidAccountTypeException;
-import exceptions.UserAlreadyExistsException;
-import models.Account;
-import models.User;
 
 import java.sql.SQLException;
 
@@ -20,7 +14,7 @@ public interface bankCrud<T> {
     public MyArrayList<T> getAccountsByUser(String username) throws SQLException;
 
     //create bank account
-    public void newBankAccount(String account_type, String username) throws SQLException, InvalidAccountTypeException;
+    public void newBankAccount(String account_type, String username) throws SQLException;
 
     //deposit funds into account by ID
     public boolean depositFunds(int account_id, double deposit_amount) throws SQLException;

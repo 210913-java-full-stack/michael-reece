@@ -1,14 +1,8 @@
 package DAOs;
 
 import datastructures.MyArrayList;
-import exceptions.AccountDoesNotExistException;
-import exceptions.IncorrectPasswordException;
-import exceptions.InvalidAccountTypeException;
-import exceptions.UserAlreadyExistsException;
 import models.Account;
-import models.User;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,7 +55,7 @@ public class BankDAO implements bankCrud<Account> {
     }
 
     @Override
-    public void newBankAccount(String account_type, String username) throws SQLException, InvalidAccountTypeException {
+    public void newBankAccount(String account_type, String username) throws SQLException {
         //creating new bank account. get most recently used ID
         getAccountId();
 

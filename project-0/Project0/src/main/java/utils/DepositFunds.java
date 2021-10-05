@@ -14,39 +14,6 @@ public class DepositFunds {
     static double deposit_amount;
     static int account_number;
 
-    public static void deposit(String username)
-    {
-        Scanner sc = new Scanner(System.in);
-        //get relevant information from the user
-        System.out.println("======DEPOSIT FUNDS======");
-        System.out.println("Enter the account number you want to deposit into: ");
-        account_number = Integer.parseInt(sc.nextLine());
-        try{
-            Connection conn = ConnectionManager.getConnection();
-            //create dao instance to perform deposit
-            BankDAO dao = new BankDAO(conn);
-
-            if(dao.accountBelongsById(account_number,username))
-            {
-                System.out.println("Enter the amount to deposit: ");
-                deposit_amount = Double.parseDouble(sc.nextLine());
-            }
-            else
-            {
-                deposit(username);
-            }
-
-            if(dao.depositFunds(account_number,deposit_amount))
-            {
-                System.out.println(deposit_amount + " deposited into account number " + account_number);
-                AccountListMenu.viewMenu(username);
-            }
-
-        } catch (SQLException | IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     public static void depositWithList(String username)
     {
         PrintAccountList.printAccountList(username);
