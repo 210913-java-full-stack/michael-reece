@@ -49,7 +49,7 @@ public class DepositFunds {
             {
                 //By this point we've checked the account number and gotten the amount.
                 //We get into here by successfully depositing money into an account
-                System.out.println(deposit_amount + " deposited into account number " + account_number);
+                System.out.printf("$%.2f deposited into account number " + account_number + "\n", deposit_amount);
                 AccountListMenu.viewMenu(username);
             }
 

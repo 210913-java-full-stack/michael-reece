@@ -46,7 +46,7 @@ public class WithdrawFunds {
             if(dao.withdrawFunds(account_number,withdraw_amount))
             {
                 //successfully withdrawn, let the user know via a printout
-                System.out.println(withdraw_amount + " withdrawn from account number " + account_number);
+                System.out.printf("$%.2f withdrawn from account number " + account_number + "\n", withdraw_amount);
                 //then list accounts in case we want to do more
                 AccountListMenu.viewMenu(username);
             }
