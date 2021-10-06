@@ -18,7 +18,7 @@ public class AccountListMenu {
         //call the printout
         PrintAccountList.printAccountList(username);
         //after showing them their accounts, printout asking them if they want to deposit or withdraw from their accounts
-        System.out.println("What would you like to do?\n1) Deposit Funds\n2) Withdraw funds\nQ) Quit");
+        System.out.println("What would you like to do?\n1) Deposit Funds\n2) Withdraw funds\n3) Transfer funds between accounts\nQ) Quit");
         String input = sc.nextLine();
         switch(input)
         {
@@ -28,6 +28,8 @@ public class AccountListMenu {
             case "2":
                 WithdrawFunds.withdrawWithList(username);
                 break;
+            case "3":
+                TransferBetweenAccounts.transferFunds(username);
             case "Q":
             case "q":
                 LoggedInMenu.viewLoggedInMenu(username);

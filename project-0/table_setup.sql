@@ -45,4 +45,7 @@ INSERT INTO accounts (account_id, account_type, balance) VALUES (900000, "Saving
 
 INSERT INTO user_accounts (username, account_id) VALUES ("micool", 900001);
 INSERT INTO user_info (username, password, first_name, last_name) VALUES ("micool", "badPassword", "Michael","Reece");
-INSERT INTO accounts (account_id, account_type, balance) VALUES (900001, "Checking", 0);
+INSERT INTO accounts (account_id, account_type, balance) VALUES (900001, "Checking", 256.45);
+
+SELECT * from user_info ui 
+SELECT * FROM accounts
